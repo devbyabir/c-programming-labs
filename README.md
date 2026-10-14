@@ -1,7 +1,7 @@
 # C Programming Labs
 
 C programming exercises from my first semester at Zhengzhou University in 2023.
-Reviewed and organized for GitHub in 2026.
+
 
 These are short beginner lab programs, one per exercise. The exercises were set
 by the course; the code is my lab work. A few bugs were fixed during the 2026
