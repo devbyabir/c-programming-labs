@@ -31,14 +31,56 @@ header. The README index maps every file to its original file name.
 
 - `lab05-functions/02_swap_call_by_value.c`: `main()`'s values stay unchanged.
   That is the call-by-value demonstration.
-- `lab03-conditions/03_largest_of_three.c` is **incomplete**. The exercise also
-  asked for the smallest number and even/odd output, and those parts were not
-  added.
-- `lab07-08-pointers/01_largest_of_three_pointers.c` repeats one comparison
-  (`*pb > *pc`). It prints the correct value for all inputs, including ties.
-- `lab02-operators/04_quadratic_roots.c`: with `a < 0` and complex roots, the
-  imaginary part prints as e.g. `+ i-1.00`. The roots are still correct.
-- `scanf` results and `int` overflow are not checked (see README limitations).
+
+The other items first listed here (the incomplete Lab 3.3, the repeated
+pointer comparison, the quadratic formatting quirk, and unchecked `scanf` and
+`int` overflow) were fixed in the second review below.
+
+## Second review (2026-11)
+
+### Bug fixes
+
+| File | Original problem | Change |
+| --- | --- | --- |
+| All 28 programs that read input | `scanf` results were not checked, so invalid input such as `abc` left variables uninitialised (`abc` → "0 is Even.") | Each `scanf` is checked; invalid input prints a message and exits with code 1 |
+| `lab03-conditions/03_largest_of_three.c` | Incomplete: only found the largest number | Smallest number and even/odd output added |
+| `lab07-08-pointers/01_largest_of_three_pointers.c` | Second condition was `*pb > *pc && *pb > *pc` | Now `*pb >= *pa && *pb >= *pc` |
+| `lab02-operators/04_quadratic_roots.c` | `b*b - 4*a*c` overflowed `int` (e.g. `50000 50000 1`); `a < 0` printed `+ i-1.00`; some roots printed `-0.00` | Discriminant in `long long`; `fabs` on the imaginary part; values that round to zero print as `0.00` |
+| `lab04-loops/03_reverse_integer.c` | `1999999999` overflowed and printed 1410065399 | Result built in `long long`; prints 9999999991 |
+| `lab04-loops/04_sum_of_digits.c` | `-123` gave −6 | Uses the absolute value; gives 6 |
+| `lab04-loops/05_first_last_digit_sum.c` | `7` gave 14 and `-1234` gave −1238 | Input outside 1000–9999 is rejected |
+| `lab02-operators/01b_swap_without_temp.c` | `a + b` could overflow `int` | Pairs that would overflow are rejected |
+| `lab01-basics/05_arithmetic_operations.c`, `lab05-functions/01_arithmetic_functions.c`, `lab07-08-pointers/04_add_pointers.c` | Sum, difference and product overflowed `int` near `INT_MAX` | Results use `long long` (and `double` for division) |
+| `lab01-basics/04_circle_area_circumference.c`, `lab04-loops/06_star_triangle.c` | Negative radius or row count accepted | Rejected |
+
+### Code quality
+
+- All files formatted with one style ([`.clang-format`](.clang-format)):
+  4-space indentation, braces on their own line, no tabs.
+- Every output ends with a newline, so the shell prompt no longer appears on
+  the last output line.
+- Array sizes come from `#define SIZE` or `sizeof arr / sizeof arr[0]`
+  instead of repeated literal numbers.
+- `int main(void)` everywhere; consistent variable names (`number2`, not
+  `Number2`); pi is a `double` constant with full precision; the multiply
+  program prints its variables instead of a hard-coded "4 and 5".
+- The linear search also reports the index where the value was found.
+
+### Tooling
+
+- `Makefile` with `all`, `test`, `sanitize`, `format`, `format-check` and
+  `clean` targets. Builds use `-Werror`.
+- 78 input/output test cases in `tests/cases/`, run by `tests/run_tests.sh`.
+- GitHub Actions workflow building and testing with GCC and Clang, plus a
+  sanitizer run (AddressSanitizer + UndefinedBehaviorSanitizer).
+
+### Verification (2026-11-06)
+
+GCC 13.3.0 and Clang on Ubuntu 24.04: all 36 programs build with
+`-Wall -Wextra -Wpedantic -Werror` and no warnings. All 78 test cases pass with
+both compilers and with sanitizers enabled. Run against the original code, the
+same tests fail 31 cases, which confirms they detect the old bugs (some of those
+failures are only the improved output wording).
 
 ## Provenance
 
