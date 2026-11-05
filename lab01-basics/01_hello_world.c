@@ -3,10 +3,11 @@
  * Prints a fixed message.
  * Original lab date: 2023-11-15
  */
-#include<stdio.h>
-int main()
+#include <stdio.h>
+
+int main(void)
 {
-    printf("This is my first C Program \n");
+    printf("This is my first C Program\n");
 
     return 0;
 }
