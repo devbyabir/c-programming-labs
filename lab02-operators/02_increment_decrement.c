@@ -4,7 +4,9 @@
  * Original lab date: 2023-11-16
  */
 #include <stdio.h>
-int main(){
+
+int main(void)
+{
     int num = 9;
     printf("Prefix Increment: %d\n", ++num);
     printf("Prefix Decrement: %d\n", --num);
