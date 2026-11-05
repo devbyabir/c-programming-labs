@@ -2,28 +2,47 @@
  * Lab 3.4: Grade calculator
  * Converts a mark from 0 to 100 into a letter grade with an if-else ladder.
  * Original lab date: 2023-11-22
+ * Review (2026-11): non-numeric input is rejected.
  */
 #include <stdio.h>
-int main()
+
+int main(void)
 {
     int marks;
+
     printf("Enter The marks: ");
-    scanf("%d", &marks);
+    if (scanf("%d", &marks) != 1)
+    {
+        printf("Invalid input: enter an integer.\n");
+        return 1;
+    }
 
     if (marks < 0 || marks > 100)
     {
         printf("Invalid marks. Marks should be between 0 and 100.\n");
-    } else if (marks < 50) {
+    }
+    else if (marks < 50)
+    {
         printf("Grade: F\n");
-    } else if (marks < 60) {
+    }
+    else if (marks < 60)
+    {
         printf("Grade: C\n");
-    } else if (marks < 70) {
+    }
+    else if (marks < 70)
+    {
         printf("Grade: B\n");
-    } else if (marks < 80) {
+    }
+    else if (marks < 80)
+    {
         printf("Grade: B+\n");
-    } else if (marks < 90) {
+    }
+    else if (marks < 90)
+    {
         printf("Grade: A\n");
-    } else {
+    }
+    else
+    {
         printf("Grade: A+\n");
     }
 

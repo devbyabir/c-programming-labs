@@ -3,26 +3,37 @@
  * Computes n! for a non-negative integer n.
  * Original lab date: 2023-11-22
  * Review (2026): n > 20 overflowed silently; it is now rejected.
+ * Review (2026-11): input is validated.
  */
 #include <stdio.h>
-int main()
+
+int main(void)
 {
-    int n, i;
+    int n;
     unsigned long long facto = 1;
-    printf("Enter an non-negative Integer: ");
-    scanf("%d", &n);
+
+    printf("Enter a non-negative Integer: ");
+    if (scanf("%d", &n) != 1)
+    {
+        printf("Invalid input: enter an integer.\n");
+        return 1;
+    }
 
     if (n < 0)
-        printf("Error! Factorial of a negative number doesn't exist.");
+    {
+        printf("Error! Factorial of a negative number doesn't exist.\n");
+    }
     else if (n > 20) /* Review fix: 21! does not fit in unsigned long long */
-        printf("Error! This program supports n up to 20.");
+    {
+        printf("Error! This program supports n up to 20.\n");
+    }
     else
     {
-        for (i = 1; i <= n; ++i)
+        for (unsigned int i = 1; i <= (unsigned int)n; ++i)
         {
             facto *= i;
         }
-        printf("Factorial of %d = %llu", n, facto);
+        printf("Factorial of %d = %llu\n", n, facto);
     }
 
     return 0;

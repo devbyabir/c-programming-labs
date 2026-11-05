@@ -1,25 +1,44 @@
 /*
- * Lab 3.3: Largest of three numbers (incomplete)
- * Prints the largest of three integers.
+ * Lab 3.3: Largest and smallest of three numbers
+ * Prints the largest and smallest of three integers and whether each is even
+ * or odd.
  * Original lab date: 2023-11-22
- * Incomplete: the exercise also asked for the smallest number and whether
- * each result is even or odd; those parts were not implemented.
+ * Review (2026-11): the original only found the largest number. The smallest
+ * number and the even/odd output were added to complete the exercise, and
+ * input is validated.
  */
 #include <stdio.h>
- int main()
+
+int main(void)
 {
     int A, B, C;
-    printf("Enter Three Numbers A, B and C: \n");
-    scanf("%d %d %d", &A, &B, &C);
+    int largest, smallest;
+
+    printf("Enter Three Numbers A, B and C:\n");
+    if (scanf("%d %d %d", &A, &B, &C) != 3)
+    {
+        printf("Invalid input: enter three integers.\n");
+        return 1;
+    }
 
     if (A >= B && A >= C)
-        printf("%d is the largest number.", A);
-
+        largest = A;
     else if (B >= A && B >= C)
-        printf("%d is the largest number.", B);
-
+        largest = B;
     else
-        printf("%d is the largest number.", C);
+        largest = C;
+
+    /* Added in 2026-11 review */
+    if (A <= B && A <= C)
+        smallest = A;
+    else if (B <= A && B <= C)
+        smallest = B;
+    else
+        smallest = C;
+
+    printf("%d is the largest number. It is %s.\n", largest, (largest % 2 == 0) ? "Even" : "Odd");
+    printf("%d is the smallest number. It is %s.\n", smallest,
+           (smallest % 2 == 0) ? "Even" : "Odd");
 
     return 0;
 }
