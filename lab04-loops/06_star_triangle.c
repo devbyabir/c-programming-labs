@@ -2,13 +2,20 @@
  * Lab 4.6: Star triangle
  * Prints a right-angled triangle of stars using nested loops.
  * Original lab date: 2023-11-23
+ * Review (2026-11): input is validated.
  */
 #include <stdio.h>
-int main()
+
+int main(void)
 {
     int rows;
+
     printf("Enter the Number of Rows: ");
-    scanf("%d", &rows);
+    if (scanf("%d", &rows) != 1 || rows < 0)
+    {
+        printf("Invalid input: enter a non-negative integer.\n");
+        return 1;
+    }
 
     for (int i = 1; i <= rows; ++i)
     {

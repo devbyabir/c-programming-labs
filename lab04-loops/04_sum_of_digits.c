@@ -2,20 +2,28 @@
  * Lab 4.4: Sum of digits
  * Adds the digits of an integer using a for loop.
  * Original lab date: 2023-11-23
- * Limit: meant for non-negative input.
+ * Review (2026-11): input is validated; negative numbers use their absolute
+ * value, so -123 gives 6 instead of -6.
  */
 #include <stdio.h>
-int main()
+
+int main(void)
 {
-    int num, sum = 0, digit;
+    int input, sum = 0;
 
     printf("Enter an Integer: ");
-    scanf("%d", &num);
+    if (scanf("%d", &input) != 1)
+    {
+        printf("Invalid input: enter an integer.\n");
+        return 1;
+    }
+
+    /* long long so that the absolute value of INT_MIN fits */
+    long long num = input < 0 ? -(long long)input : input;
 
     for (; num != 0; num /= 10)
     {
-        digit = num % 10;
-        sum += digit;
+        sum += (int)(num % 10);
     }
 
     printf("Sum of Digits: %d\n", sum);

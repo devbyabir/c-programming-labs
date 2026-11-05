@@ -2,23 +2,32 @@
  * Lab 4.3: Reverse an integer
  * Reverses the digits of an integer.
  * Original lab date: 2023-11-23
- * Limit: the reversed value must fit in an int.
+ * Review (2026-11): input is validated; the reversed value is built in a
+ * long long, so numbers like 1999999999 print correctly instead of
+ * overflowing an int.
  */
 #include <stdio.h>
-int main()
+
+int main(void)
 {
-    int num, reverseNum = 0, remainder;
+    int num;
+    long long reverseNum = 0;
+
     printf("Enter an Integer: ");
-    scanf("%d", &num);
+    if (scanf("%d", &num) != 1)
+    {
+        printf("Invalid input: enter an integer.\n");
+        return 1;
+    }
 
     while (num != 0)
     {
-        remainder = num % 10;
+        int remainder = num % 10;
         reverseNum = reverseNum * 10 + remainder;
         num /= 10;
     }
 
-    printf("Reversed Integer: %d\n", reverseNum);
+    printf("Reversed Integer: %lld\n", reverseNum);
 
     return 0;
 }
