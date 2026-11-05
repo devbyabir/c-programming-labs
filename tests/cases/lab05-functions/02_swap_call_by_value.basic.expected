@@ -1,0 +1,9 @@
+Enter The First Integer Number: Enter The Second Integer Number: Before swapping:
+Num1 = 1,
+Num2 = 2
+Inside The Function:
+num1 = 2,
+num2 = 1
+After swapping:
+Num1 = 1,
+Num2 = 2
