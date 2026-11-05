@@ -2,29 +2,35 @@
  * Lab 7-8.2: Array sum with pointers
  * Sums ten entered integers by stepping a pointer through the array.
  * Original lab date: 2023-12-06/07
+ * Review (2026-11): input is validated; the size is a named constant.
  */
-#include<stdio.h>
-int main()
+#include <stdio.h>
+
+#define SIZE 10
+
+int main(void)
 {
-	int array[10];
-	int i, sum = 0;
-	int *pnum;
+    int array[SIZE];
+    int sum = 0;
 
-	printf("Enter 10 Elements : \n");
-
-	for (i = 0; i < 10; i++)
+    printf("Enter %d Elements:\n", SIZE);
+    for (int i = 0; i < SIZE; i++)
+    {
+        if (scanf("%d", &array[i]) != 1)
         {
-            scanf("%d", &array[i]);
+            printf("Invalid input: enter an integer.\n");
+            return 1;
         }
-	pnum = array;
+    }
 
-	for (i = 0; i < 10; i++)
-        {
-            sum = sum + *pnum;
-            pnum++;
-        }
+    int *pnum = array;
+    for (int i = 0; i < SIZE; i++)
+    {
+        sum = sum + *pnum;
+        pnum++;
+    }
 
-	printf("The Sum of All Array Elements : %d", sum);
+    printf("The Sum of All Array Elements: %d\n", sum);
 
-return 0;
+    return 0;
 }
