@@ -82,6 +82,27 @@ both compilers and with sanitizers enabled. Run against the original code, the
 same tests fail 31 cases, which confirms they detect the old bugs (some of those
 failures are only the improved output wording).
 
+## Final review (2026-11-07)
+
+### Bug fixes
+
+| File | Problem | Change |
+| --- | --- | --- |
+| `lab02-operators/04_quadratic_roots.c` | `4LL * a * c` still overflowed `long long` for very large `a` and `c` (`2147483647 0 2147483647`; 4·a·c ≈ 1.8·10¹⁹), and `-b` overflowed `int` when `b = -2147483648` | Inputs where `b*b - 4*a*c` would not fit in a `long long` are rejected with a message, like the swap-without-temp program; `-b` is computed as a `double` |
+| `lab07-08-pointers/02_array_sum_pointers.c` | The `int` sum overflowed for large inputs (`2147483647 1 0 0 0 0 0 0 0 0`) | Sum is a `long long`; prints 2147483648 |
+
+Five regression cases were added (83 in total): `04_quadratic_roots.overflow`,
+`.overflow_negative_ac`, `.near_limit` and `.b_int_min`, and
+`02_array_sum_pointers.overflow`. All earlier expected outputs are unchanged.
+
+### Verification
+
+No C compiler was installed on the review machine (Windows 11), so the build,
+tests and sanitizer run were not repeated locally. The expected outputs of the
+new cases were worked out by hand and checked with double-precision
+arithmetic. The CI workflow runs the build, all tests and the sanitizer run
+with GCC and Clang on the next push.
+
 ## Provenance
 
 The original lab report says the quadratic solver was written with help from a

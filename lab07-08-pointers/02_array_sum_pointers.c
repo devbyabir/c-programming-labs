@@ -3,6 +3,8 @@
  * Sums ten entered integers by stepping a pointer through the array.
  * Original lab date: 2023-12-06/07
  * Review (2026-11): input is validated; the size is a named constant.
+ * Final review (2026-11): the sum is a long long, so ten large values such as
+ * 2147483647 and 1 no longer overflow an int.
  */
 #include <stdio.h>
 
@@ -11,7 +13,7 @@
 int main(void)
 {
     int array[SIZE];
-    int sum = 0;
+    long long sum = 0;
 
     printf("Enter %d Elements:\n", SIZE);
     for (int i = 0; i < SIZE; i++)
@@ -30,7 +32,7 @@ int main(void)
         pnum++;
     }
 
-    printf("The Sum of All Array Elements: %d\n", sum);
+    printf("The Sum of All Array Elements: %lld\n", sum);
 
     return 0;
 }
