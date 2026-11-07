@@ -131,8 +131,11 @@ These are learning exercises, and input is read with `scanf`:
 - Integers read with `scanf("%d")` must fit in an `int` (−2147483648 to
   2147483647 on common platforms). A larger number such as `99999999999` is
   not detected, and the C standard does not define what value is stored.
-- The quadratic solver rejects coefficients so large that `b*b - 4*a*c` would
-  not fit in a `long long` (for example `2147483647 0 2147483647`).
+- The quadratic solver rejects coefficients so large that the intermediate
+  step `4*a*c` or the final `b*b - 4*a*c` would not fit in a `long long` (for
+  example `2147483647 0 2147483647`). Some rejected inputs, such as
+  `-1073741824 1 -2147483648`, have a final value that would fit, but
+  `4*a*c` does not.
 
 Per-file limits are noted in the file headers.
 

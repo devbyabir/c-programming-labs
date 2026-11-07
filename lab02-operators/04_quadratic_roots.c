@@ -7,9 +7,10 @@
  * Review (2026-11): input is validated; the discriminant uses long long; the
  * imaginary part always prints as a positive number and -0.00 no longer
  * appears.
- * Final review (2026-11): b*b - 4*a*c can still overflow long long when a and
- * c are both very large (e.g. 2147483647 0 2147483647), so those inputs are
- * rejected; -b is computed as a double so b = -2147483648 works.
+ * Final review (2026-11): when a and c are both very large, the intermediate
+ * step 4*a*c or the final b*b - 4*a*c can overflow long long (e.g.
+ * 2147483647 0 2147483647), so those inputs are rejected; -b is computed as a
+ * double so b = -2147483648 works.
  * Link with -lm on Linux.
  */
 #include <limits.h>
@@ -46,7 +47,7 @@ int main(void)
     long long ac = (long long)a * c;
     if (ac > LLONG_MAX / 4 || ac < LLONG_MIN / 4 || (ac < 0 && bb > LLONG_MAX + 4 * ac))
     {
-        printf("These values are too large: b*b - 4*a*c does not fit in a long long.\n");
+        printf("These values are too large: 4*a*c or b*b - 4*a*c would not fit in a long long.\n");
         return 1;
     }
 

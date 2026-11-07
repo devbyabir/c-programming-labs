@@ -88,7 +88,7 @@ failures are only the improved output wording).
 
 | File | Problem | Change |
 | --- | --- | --- |
-| `lab02-operators/04_quadratic_roots.c` | `4LL * a * c` still overflowed `long long` for very large `a` and `c` (`2147483647 0 2147483647`; 4·a·c ≈ 1.8·10¹⁹), and `-b` overflowed `int` when `b = -2147483648` | Inputs where `b*b - 4*a*c` would not fit in a `long long` are rejected with a message, like the swap-without-temp program; `-b` is computed as a `double` |
+| `lab02-operators/04_quadratic_roots.c` | `4LL * a * c` still overflowed `long long` for very large `a` and `c` (`2147483647 0 2147483647`; 4·a·c ≈ 1.8·10¹⁹), and `-b` overflowed `int` when `b = -2147483648` | Inputs where the intermediate step `4*a*c` or the final `b*b - 4*a*c` would not fit in a `long long` are rejected with a message, like the swap-without-temp program. Some rejected inputs (e.g. `-1073741824 1 -2147483648`) have a final value that fits, but `4*a*c` does not. `-b` is computed as a `double` |
 | `lab07-08-pointers/02_array_sum_pointers.c` | The `int` sum overflowed for large inputs (`2147483647 1 0 0 0 0 0 0 0 0`) | Sum is a `long long`; prints 2147483648 |
 
 Five regression cases were added (83 in total): `04_quadratic_roots.overflow`,

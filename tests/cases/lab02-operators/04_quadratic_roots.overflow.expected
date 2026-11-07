@@ -1,2 +1,2 @@
 Enter the value of a, b and c where a*x*x + b*x + c = 0
-These values are too large: b*b - 4*a*c does not fit in a long long.
+These values are too large: 4*a*c or b*b - 4*a*c would not fit in a long long.
