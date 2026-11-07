@@ -2,22 +2,33 @@
 
 [![CI](https://github.com/devbyabir/c-programming-labs/actions/workflows/ci.yml/badge.svg)](https://github.com/devbyabir/c-programming-labs/actions/workflows/ci.yml)
 
-C programming exercises from my first semester at Zhengzhou University in 2023.
+My C programming lab work from my **first semester at Zhengzhou University**,
+written in eight lab sessions in **November–December 2023**. It was my first
+programming course: 36 short programs, one per exercise, that go from printing
+a line of text to passing pointers to functions.
 
-These are short beginner lab programs, one per exercise. The exercises were set
-by the course; the code is my lab work. The programs were reviewed in 2026:
-bugs were fixed, input is now validated, and every program is covered by
-automated tests that run on each push. All changes are marked in the code and
-listed in [REVIEW_NOTES.md](REVIEW_NOTES.md); they were not part of the original
-submissions.
+The exercises were set by the course; the code is my lab work. The programs
+were reviewed in 2026: bugs were fixed, input is now validated, and every
+program is covered by automated tests that run on each push. All changes are
+marked in the code and listed in [REVIEW_NOTES.md](REVIEW_NOTES.md); they were
+not part of the original 2023 submissions.
 
-## Topics covered
+## What I practised
 
-- Input/output, variables and operators
-- Conditions and loops
-- Functions and parameter passing
-- Arrays and basic searching
-- Pointers
+| Lab | Topic | What I practised |
+| --- | --- | --- |
+| [1](lab01-basics) | Basics | `printf` and `scanf`, `int` and `double` variables, arithmetic |
+| [2](lab02-operators) | Operators | Swapping values, prefix and postfix `++`/`--`, the `?:` operator, `math.h` |
+| [3](lab03-conditions) | Conditions | `if`/`else` ladders, `%` for even/odd, prime and leap-year checks |
+| [4](lab04-loops) | Loops | `for`, `while` and `do-while`, taking a number apart digit by digit, nested loops |
+| [5](lab05-functions) | Functions | Prototypes, return values, call by value, `bool` |
+| [6](lab06-arrays) | Arrays | Reading into an array, linear search, sum, max/min, reversing in place |
+| [7–8](lab07-08-pointers) | Pointers | `&` and `*`, pointer arithmetic over an array, swapping through pointer parameters |
+
+To follow the progression, read the labs in order. The same task sometimes
+comes back in a later lab with a new tool: swapping two numbers in Lab 2, with a
+function in Lab 5 (which shows why call by value doesn't work), and with
+pointers in Lab 7–8.
 
 ## Exercise index
 
@@ -58,7 +69,7 @@ name in my coursework folder. ✱ = bug fixed in a 2026 review.
 | 6 | [04_array_max_min.c](lab06-arrays/04_array_max_min.c) | Largest and smallest element | 2023-11-30 | `Untitled4.c` |
 | 6 | [05_reverse_array.c](lab06-arrays/05_reverse_array.c) ✱ | Reverses an array | 2023-11-30 | `Untitled5.c` |
 | 7–8 | [01_largest_of_three_pointers.c](lab07-08-pointers/01_largest_of_three_pointers.c) ✱ | Largest of three via pointers | 2023-12-06/07 | `Untitled1.c` |
-| 7–8 | [02_array_sum_pointers.c](lab07-08-pointers/02_array_sum_pointers.c) | Array sum via pointers | 2023-12-06/07 | `Untitled2.c` |
+| 7–8 | [02_array_sum_pointers.c](lab07-08-pointers/02_array_sum_pointers.c) ✱ | Array sum via pointers | 2023-12-06/07 | `Untitled2.c` |
 | 7–8 | [03_swap_pointers.c](lab07-08-pointers/03_swap_pointers.c) | Swap via pointers | 2023-12-06/07 | `Untitled3.c` |
 | 7–8 | [04_add_pointers.c](lab07-08-pointers/04_add_pointers.c) ✱ | Add via pointers | 2023-12-06/07 | `Untitled4.c` |
 | 7–8 | [05_array_io_pointers.c](lab07-08-pointers/05_array_io_pointers.c) | Array input/output via pointers | 2023-12-06/07 | `Untitled5.c` |
@@ -105,18 +116,28 @@ run `.\count_digits.exe`. Only the quadratic solver needs `-lm` (on Linux).
 
 Each test case is a pair of files in [`tests/cases/`](tests/cases): a `.in`
 file piped to the program and a `.expected` file with its exact output. There
-are 78 cases covering every program, including edge cases such as `0`,
-negative numbers, values near `INT_MAX`, division by zero and non-numeric
-input. [`tests/run_tests.sh`](tests/run_tests.sh) runs them, and
+are 83 cases covering every program, including edge cases such as `0`,
+negative numbers, values near `INT_MAX` and `INT_MIN`, division by zero and
+non-numeric input. [`tests/run_tests.sh`](tests/run_tests.sh) runs them, and
 [GitHub Actions](.github/workflows/ci.yml) runs the build and tests with GCC and
 Clang, with and without sanitizers, on every push.
 
 ## Limitations
 
-These are learning exercises. Non-numeric input is rejected, but input that
-starts with a number (for example `12abc`) is read as that number. The
-array-sum-with-pointers program adds ten user values in an `int`, so very large
-values can still overflow. Per-file limits are noted in the file headers.
+These are learning exercises, and input is read with `scanf`:
+
+- Non-numeric input is rejected, but input that starts with a number (for
+  example `12abc`) is read as that number.
+- Integers read with `scanf("%d")` must fit in an `int` (−2147483648 to
+  2147483647 on common platforms). A larger number such as `99999999999` is
+  not detected, and the C standard does not define what value is stored.
+- The quadratic solver rejects coefficients so large that the intermediate
+  step `4*a*c` or the final `b*b - 4*a*c` would not fit in a `long long` (for
+  example `2147483647 0 2147483647`). Some rejected inputs, such as
+  `-1073741824 1 -2147483648`, have a final value that would fit, but
+  `4*a*c` does not.
+
+Per-file limits are noted in the file headers.
 
 ## Licence
 
