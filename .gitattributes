@@ -1,0 +1,2 @@
+/Makefile -linguist-detectable
+/tests/run_tests.sh -linguist-detectable
