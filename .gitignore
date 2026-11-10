@@ -1,15 +1,18 @@
-# Compiled output
-build/
+# Executables and Binaries
 *.exe
+*.out
+*.app
 *.o
 *.obj
-*.out
-a.out
-*.pdb
-*.ilk
 
-# Editor and OS files
+# Build and IDE Directories
 .vscode/
 .idea/
-.DS_Store
-Thumbs.db
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Temporary and Log files
+*.log
+*.tmp
