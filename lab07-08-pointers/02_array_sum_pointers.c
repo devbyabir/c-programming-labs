@@ -6,6 +6,7 @@
  * Final review (2026-11): the sum is a long long, so ten large values such as
  * 2147483647 and 1 no longer overflow an int.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 #define SIZE 10
@@ -18,7 +19,7 @@ int main(void)
     printf("Enter %d Elements:\n", SIZE);
     for (int i = 0; i < SIZE; i++)
     {
-        if (scanf("%d", &array[i]) != 1)
+        if (!lab_read_int(&array[i]))
         {
             printf("Invalid input: enter an integer.\n");
             return 1;

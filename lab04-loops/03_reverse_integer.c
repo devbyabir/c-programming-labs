@@ -6,6 +6,7 @@
  * long long, so numbers like 1999999999 print correctly instead of
  * overflowing an int.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -14,7 +15,7 @@ int main(void)
     long long reverseNum = 0;
 
     printf("Enter an Integer: ");
-    if (scanf("%d", &num) != 1)
+    if (!lab_read_int(&num))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

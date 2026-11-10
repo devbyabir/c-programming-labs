@@ -4,6 +4,7 @@
  * Original lab date: 2023-11-22
  * Review (2026-11): non-numeric input is rejected.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -11,7 +12,7 @@ int main(void)
     int marks;
 
     printf("Enter The marks: ");
-    if (scanf("%d", &marks) != 1)
+    if (!lab_read_int(&marks))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
@@ -20,6 +21,7 @@ int main(void)
     if (marks < 0 || marks > 100)
     {
         printf("Invalid marks. Marks should be between 0 and 100.\n");
+        return 1;
     }
     else if (marks < 50)
     {

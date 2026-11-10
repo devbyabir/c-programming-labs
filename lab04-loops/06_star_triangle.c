@@ -4,6 +4,7 @@
  * Original lab date: 2023-11-23
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -11,9 +12,9 @@ int main(void)
     int rows;
 
     printf("Enter the Number of Rows: ");
-    if (scanf("%d", &rows) != 1 || rows < 0)
+    if (!lab_read_int(&rows) || rows < 0 || rows > 1000)
     {
-        printf("Invalid input: enter a non-negative integer.\n");
+        printf("Invalid input: enter an integer from 0 to 1000.\n");
         return 1;
     }
 

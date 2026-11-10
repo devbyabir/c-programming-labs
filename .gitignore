@@ -16,3 +16,6 @@
 # Temporary and Log files
 *.log
 *.tmp
+
+/build/
+__pycache__/

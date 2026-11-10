@@ -7,6 +7,7 @@
  * number and the even/odd output were added to complete the exercise, and
  * input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -15,7 +16,7 @@ int main(void)
     int largest, smallest;
 
     printf("Enter Three Numbers A, B and C:\n");
-    if (scanf("%d %d %d", &A, &B, &C) != 3)
+    if (!lab_read_int(&A) || !lab_read_int(&B) || !lab_read_int(&C))
     {
         printf("Invalid input: enter three integers.\n");
         return 1;

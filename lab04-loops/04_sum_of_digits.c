@@ -5,6 +5,7 @@
  * Review (2026-11): input is validated; negative numbers use their absolute
  * value, so -123 gives 6 instead of -6.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -12,7 +13,7 @@ int main(void)
     int input, sum = 0;
 
     printf("Enter an Integer: ");
-    if (scanf("%d", &input) != 1)
+    if (!lab_read_int(&input))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

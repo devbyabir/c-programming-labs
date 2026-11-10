@@ -4,6 +4,7 @@
  * Original lab date: 2023-11-16
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -11,13 +12,13 @@ int main(void)
     int num1, num2, maximum;
 
     printf("Enter the first number: ");
-    if (scanf("%d", &num1) != 1)
+    if (!lab_read_int(&num1))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
     }
     printf("Enter the second number: ");
-    if (scanf("%d", &num2) != 1)
+    if (!lab_read_int(&num2))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

@@ -4,6 +4,7 @@
  * Original lab date: 2023-11-16
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -11,7 +12,7 @@ int main(void)
     int a, b, t;
 
     printf("Enter two values:\n");
-    if (scanf("%d %d", &a, &b) != 2)
+    if (!lab_read_int(&a) || !lab_read_int(&b))
     {
         printf("Invalid input: enter two integers.\n");
         return 1;

@@ -5,6 +5,7 @@
  * Review (2026-11): input is validated; numbers outside 1000-9999 are
  * rejected instead of giving wrong answers (7 gave 14, -1234 gave -1238).
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -12,7 +13,7 @@ int main(void)
     int num, firstDigit, lastDigit, sum;
 
     printf("Enter a Four-digit Number: ");
-    if (scanf("%d", &num) != 1 || num < 1000 || num > 9999)
+    if (!lab_read_int(&num) || num < 1000 || num > 9999)
     {
         printf("Invalid input: enter a four-digit number (1000-9999).\n");
         return 1;

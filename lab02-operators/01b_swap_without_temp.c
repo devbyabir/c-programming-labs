@@ -5,6 +5,7 @@
  * Review (2026-11): input is validated, and pairs whose sum would overflow
  * an int are rejected instead of causing undefined behaviour.
  */
+#include "../include/lab_input.h"
 #include <limits.h>
 #include <stdio.h>
 
@@ -13,7 +14,7 @@ int main(void)
     int a, b;
 
     printf("Enter two values\n");
-    if (scanf("%d %d", &a, &b) != 2)
+    if (!lab_read_int(&a) || !lab_read_int(&b))
     {
         printf("Invalid input: enter two integers.\n");
         return 1;

@@ -4,6 +4,7 @@
  * Original lab date: 2023-12-06/07
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 void swap(int *pa, int *pb)
@@ -18,13 +19,13 @@ int main(void)
     int num1, num2;
 
     printf("Enter The First Number: ");
-    if (scanf("%d", &num1) != 1)
+    if (!lab_read_int(&num1))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
     }
     printf("Enter The Second Number: ");
-    if (scanf("%d", &num2) != 1)
+    if (!lab_read_int(&num2))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

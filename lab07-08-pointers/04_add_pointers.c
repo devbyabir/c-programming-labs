@@ -5,6 +5,7 @@
  * Review (2026-11): input is validated; the sum uses long long so it cannot
  * overflow.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -13,13 +14,13 @@ int main(void)
     int *pa = &num1, *pb = &num2;
 
     printf("Enter First Number: ");
-    if (scanf("%d", pa) != 1)
+    if (!lab_read_int(pa))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
     }
     printf("Enter Second Number: ");
-    if (scanf("%d", pb) != 1)
+    if (!lab_read_int(pb))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
