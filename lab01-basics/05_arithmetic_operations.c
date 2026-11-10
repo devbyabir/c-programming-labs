@@ -6,6 +6,7 @@
  * Review (2026-11): input is validated; results use long long so they cannot
  * overflow.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -13,13 +14,13 @@ int main(void)
     int number1, number2;
 
     printf("Enter First number: ");
-    if (scanf("%d", &number1) != 1)
+    if (!lab_read_int(&number1))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
     }
     printf("Enter Second number: ");
-    if (scanf("%d", &number2) != 1)
+    if (!lab_read_int(&number2))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

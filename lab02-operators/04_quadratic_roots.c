@@ -13,6 +13,7 @@
  * double so b = -2147483648 works.
  * Link with -lm on Linux.
  */
+#include "../include/lab_input.h"
 #include <limits.h>
 #include <math.h>
 #include <stdio.h>
@@ -28,7 +29,7 @@ int main(void)
     int a, b, c;
 
     printf("Enter the value of a, b and c where a*x*x + b*x + c = 0\n");
-    if (scanf("%d %d %d", &a, &b, &c) != 3)
+    if (!lab_read_int(&a) || !lab_read_int(&b) || !lab_read_int(&c))
     {
         printf("Invalid input: enter three integers.\n");
         return 1;

@@ -10,30 +10,34 @@
 CC      ?= gcc
 CFLAGS  ?= -std=c11 -Wall -Wextra -Wpedantic -Werror -O2
 LDLIBS  ?= -lm
+PYTHON  ?= python3
+CLANG_FORMAT ?= clang-format
 
 SRCS := $(sort $(wildcard lab*/*.c))
+HEADERS := $(wildcard include/*.h)
 BINS := $(patsubst %.c,build/%,$(SRCS))
 
 .PHONY: all test sanitize format format-check clean
 
 all: $(BINS)
 
-build/%: %.c
+build/%: %.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $< -o $@ $(LDLIBS)
 
 test: all
-	@sh tests/run_tests.sh build
+	$(PYTHON) -m unittest discover -s tests -p 'test_*.py'
+	$(PYTHON) tests/run_tests.py build
 
 sanitize:
 	$(MAKE) clean
 	$(MAKE) test CFLAGS="$(CFLAGS) -g -fsanitize=address,undefined -fno-sanitize-recover=all"
 
 format:
-	clang-format -i $(SRCS)
+	$(CLANG_FORMAT) -i $(SRCS) $(HEADERS)
 
 format-check:
-	clang-format --dry-run --Werror $(SRCS)
+	$(CLANG_FORMAT) --dry-run --Werror $(SRCS) $(HEADERS)
 
 clean:
 	rm -rf build

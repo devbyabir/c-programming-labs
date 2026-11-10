@@ -8,6 +8,7 @@
  * Review (2026-11): input is validated; the functions return long long and
  * double so results cannot overflow or lose precision.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 long long add(int a, int b);
@@ -20,13 +21,13 @@ int main(void)
     int num1, num2;
 
     printf("Enter First Number: ");
-    if (scanf("%d", &num1) != 1)
+    if (!lab_read_int(&num1))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
     }
     printf("Enter Second Number: ");
-    if (scanf("%d", &num2) != 1)
+    if (!lab_read_int(&num2))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

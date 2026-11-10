@@ -4,6 +4,7 @@
  * Original lab date: 2023-12-06/07
  * Review (2026-11): input is validated; the size is a named constant.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 #define SIZE 10
@@ -15,7 +16,7 @@ int main(void)
     printf("Enter %d Elements:\n", SIZE);
     for (int i = 0; i < SIZE; ++i)
     {
-        if (scanf("%d", array + i) != 1)
+        if (!lab_read_int(array + i))
         {
             printf("Invalid input: enter an integer.\n");
             return 1;

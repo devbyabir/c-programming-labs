@@ -4,6 +4,7 @@
  * Original lab date: 2023-11-22
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -11,7 +12,7 @@ int main(void)
     int year;
 
     printf("Enter a Year: ");
-    if (scanf("%d", &year) != 1)
+    if (!lab_read_int(&year))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

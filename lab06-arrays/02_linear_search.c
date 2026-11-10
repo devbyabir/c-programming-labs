@@ -6,6 +6,7 @@
  * Review (2026-11): input is validated; the loop uses the array's own size
  * and the result shows the position found.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -15,7 +16,7 @@ int main(void)
     int search_element;
 
     printf("Enter The Element You Want To Search: ");
-    if (scanf("%d", &search_element) != 1)
+    if (!lab_read_int(&search_element))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

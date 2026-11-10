@@ -5,6 +5,7 @@
  * Review (2026-11): the second condition tested *pb > *pc twice; it now
  * compares b with a and with c. Input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -13,7 +14,7 @@ int main(void)
     int *pa = &a, *pb = &b, *pc = &c;
 
     printf("Enter Three Numbers:\n");
-    if (scanf("%d %d %d", pa, pb, pc) != 3)
+    if (!lab_read_int(pa) || !lab_read_int(pb) || !lab_read_int(pc))
     {
         printf("Invalid input: enter three integers.\n");
         return 1;

@@ -5,6 +5,7 @@
  * Review (2026): n > 20 overflowed silently; it is now rejected.
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -13,7 +14,7 @@ int main(void)
     unsigned long long facto = 1;
 
     printf("Enter a non-negative Integer: ");
-    if (scanf("%d", &n) != 1)
+    if (!lab_read_int(&n))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
@@ -22,10 +23,12 @@ int main(void)
     if (n < 0)
     {
         printf("Error! Factorial of a negative number doesn't exist.\n");
+        return 1;
     }
     else if (n > 20) /* Review fix: 21! does not fit in unsigned long long */
     {
         printf("Error! This program supports n up to 20.\n");
+        return 1;
     }
     else
     {

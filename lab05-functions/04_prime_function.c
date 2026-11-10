@@ -6,6 +6,7 @@
  * Review (2026): loop test i * i could overflow; now i <= num / i.
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdbool.h>
 #include <stdio.h>
 
@@ -16,7 +17,7 @@ int main(void)
     int number;
 
     printf("Enter A Number: ");
-    if (scanf("%d", &number) != 1)
+    if (!lab_read_int(&number))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;

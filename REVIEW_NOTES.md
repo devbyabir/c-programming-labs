@@ -2,7 +2,7 @@
 
 The programs were written for lab sessions in November–December 2023 and
 reviewed in 2026 before publishing. Original lab dates are kept in each file
-header. The README index maps every file to its original file name.
+header. The README index links each current file to its exercise.
 
 ## Preparation
 
@@ -147,3 +147,27 @@ in `main()`, as intended. `-1 0 -1` in the quadratic solver printed
 
 Not tested: invalid (non-numeric) input and overflow-range values, which are
 documented limitations.
+
+## Repository hardening (2026-11-10)
+
+- Replaced numeric `scanf` conversions with bounded token readers using
+  `strtol`/`strtod`, full-token checks, range checks and finite-double validation.
+  Whitespace-separated inputs retain their original layout. Programs exit after
+  a failed read; the shared helper does not implement interactive retry logic.
+- Rejected non-finite circle results, capped triangles at 1000 rows, changed the
+  first prime checker to a square-root bound, and made grade/factorial domain
+  errors return exit status 1.
+- Expanded the 83 fixtures to 230, including invalid input for every input-reading
+  program. The portable Python runner checks stdout, stderr, exit status and a
+  five-second deadline; eight runner self-tests exercise failure detection.
+- Consolidated CI with GCC/Clang builds and sanitizers, formatting checks,
+  read-only permissions, a pinned checkout action and monthly action updates.
+- Restored build-directory ignores, standardized text line endings, corrected
+  README topic claims and build instructions, and added the current lab index.
+
+Local verification: all 36 programs compiled with Zig 0.15.2's C compiler on
+Windows using C11, `-Wall -Wextra -Wpedantic -Werror -O2`. The eight runner
+self-tests and clang-format 18.1.8 checks passed. Windows Application Control
+blocked execution of several generated binaries (WinError 4551), so the full
+local fixture run is not a passing result. Linux GCC/Clang fixture and sanitizer
+results must be checked in the pull request's GitHub Actions runs.

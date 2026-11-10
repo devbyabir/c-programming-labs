@@ -5,14 +5,15 @@
  * Review (2026): numbers below 2 were reported as prime; fixed.
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
 {
-    int number, i, m, flag = 0;
+    int number, i, flag = 0;
 
     printf("Enter the Number to Check Prime: ");
-    if (scanf("%d", &number) != 1)
+    if (!lab_read_int(&number))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
@@ -25,8 +26,7 @@ int main(void)
         return 0;
     }
 
-    m = number / 2;
-    for (i = 2; i <= m; i++)
+    for (i = 2; i <= number / i; i++)
     {
         if (number % i == 0)
         {

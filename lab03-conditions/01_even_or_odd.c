@@ -4,6 +4,7 @@
  * Original lab date: 2023-11-22
  * Review (2026-11): input is validated.
  */
+#include "../include/lab_input.h"
 #include <stdio.h>
 
 int main(void)
@@ -11,7 +12,7 @@ int main(void)
     int number;
 
     printf("Enter an Integer Number: ");
-    if (scanf("%d", &number) != 1)
+    if (!lab_read_int(&number))
     {
         printf("Invalid input: enter an integer.\n");
         return 1;
