@@ -9,6 +9,9 @@
 
 void swap(int *pa, int *pb)
 {
+    if (pa == NULL || pb == NULL)
+        return;
+
     int temp = *pa;
     *pa = *pb;
     *pb = temp;

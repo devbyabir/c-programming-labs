@@ -14,6 +14,9 @@
  * Callers report the error and exit, so no retry/draining logic is needed. */
 static inline int lab_read_token(char *token, size_t capacity)
 {
+    if (token == NULL || capacity == 0)
+        return 0;
+
     int ch;
     size_t length = 0;
     do
@@ -37,6 +40,9 @@ static inline int lab_read_token(char *token, size_t capacity)
 
 static inline int lab_read_int(int *value)
 {
+    if (value == NULL)
+        return 0;
+
     char token[128], *end;
     if (!lab_read_token(token, sizeof token))
         return 0;
@@ -50,6 +56,9 @@ static inline int lab_read_int(int *value)
 
 static inline int lab_read_double(double *value)
 {
+    if (value == NULL)
+        return 0;
+
     char token[128], *end;
     if (!lab_read_token(token, sizeof token))
         return 0;

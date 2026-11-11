@@ -16,6 +16,24 @@ safety fixes are recorded in [REVIEW_NOTES.md](REVIEW_NOTES.md).
 These labs do **not** currently cover recursion, strings, dynamic allocation,
 structures, unions or file I/O. There are no third-party C library dependencies.
 
+## Repository layout
+
+| Path | Contents |
+| --- | --- |
+| `lab01-basics/` | Output and introductory arithmetic |
+| `lab02-operators/` | Operators, swapping and quadratic roots |
+| `lab03-conditions/` | Decisions, primality, grades and factorials |
+| `lab04-loops/` | Counting, digits and patterns |
+| `lab05-functions/` | Function-based exercises |
+| `lab06-arrays/` | Fixed-size array exercises |
+| `lab07-08-pointers/` | Pointer exercises |
+| `include/` | Shared checked numeric input helpers |
+| `tests/` | Regression fixtures and test runners |
+| `.github/workflows/` | Build and test automation |
+
+There is no `data-structures/` directory because the repository has no data
+structure exercise yet.
+
 ## Quick start
 
 Clone the repository and install a C11 compiler (GCC or Clang):
